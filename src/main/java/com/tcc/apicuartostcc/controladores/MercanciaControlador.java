@@ -48,6 +48,19 @@ public class MercanciaControlador {
         }
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> buscarPorIUP(@PathVariable Integer id){
+        try{
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(mercanciaServicio.buscarPorId(id));
+        }catch(Exception error){
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("{mensaje: Datos no encontrados }");
+        }
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Integer id){
         try{
